@@ -2,18 +2,22 @@
 
 ## Getting started
 
-Install (in a virtual environment) dependencies in `requirements.txt` with by running `pip install -r requirements.txt`.
+### Setting up OpenAI access
 
-Start working through the notebooks in order by:
-1. running `jupyter notebook` in the root directory, or
-2. using VS code
+Create a file with the name `.env` and set your enviornment variables. You can copy the `.env.sample` file, rename it to `.env` and then add the requisite values there.
 
-## Working with OpenAI
+### Dependencies
 
-Create a file with the name `.env` and set your enviornment variables:
+Install (in a virtual environment) dependencies in `requirements.txt` by running `pip install -r requirements.txt`.
 
-```
-OPENAI_API_KEY=<your_api_key>
-OPENAI_ORGANIZATION=<your_organization_id>
-``````
+### Learning through notebooks
 
+You can start working through the notebooks in the `notebooks` directory in order by running `jupyter notebook` in the root directory, or using VS code
+
+### Running an end-to-end demo
+
+You can also run an end-to-end demo by:
+1. Go to the `backend` directory in a terminal, and run `python main.py`
+2. In a separate terminal, go to the `frontend` directory, and run `streamlit run main.py`
+
+Make sure in both cases the virtual environment is active.
