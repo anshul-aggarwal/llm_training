@@ -3,7 +3,7 @@ import json
 import uvicorn
 from fastapi import FastAPI
 
-from logic import initialise, query_llm
+from utils import initialise, query_llm
 
 app = FastAPI()
 
@@ -57,7 +57,7 @@ def chitchat(query, session_id):
 
 def talktomovie(query, session_id, movie_search):
     movie_description = open(
-        movie_search["resource_file"], encoding="utf-8"
+        movie_search["resource_file"], encoding="utf-8", errors="ignore"
     ).read()
 
     messages = [
@@ -71,7 +71,12 @@ def talktomovie(query, session_id, movie_search):
         },
     ]
 
-    gpt_response = query_llm(messages, temperature=0.4)
+    if len(movie_description.split()) > 2000:
+        model = "gpt-3.5-turbo-16k"
+    else:
+        model = "gpt-3.5-turbo"
+
+    gpt_response = query_llm(messages, temperature=0.4, model=model)
     movie_search.pop("type")
     return {
         "content": gpt_response,

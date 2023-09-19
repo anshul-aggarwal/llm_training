@@ -1,22 +1,19 @@
 import os
-import sys
+import tempfile
 
 import openai
 from dotenv import load_dotenv
-
-load_dotenv("../.env")
-
-openai.api_key = os.environ["OPENAI_API_KEY"]
-openai.organization = os.getenv("OPENAI_ORGANIZATION")
-
-import tempfile
-
 from langchain.document_loaders import DirectoryLoader
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.retrievers import ParentDocumentRetriever
 from langchain.storage import InMemoryStore
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import SKLearnVectorStore
+
+load_dotenv("../.env")
+
+openai.api_key = os.environ["OPENAI_API_KEY"]
+openai.organization = os.getenv("OPENAI_ORGANIZATION")
 
 
 def initialise():
